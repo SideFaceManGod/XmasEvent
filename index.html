@@ -1,77 +1,164 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
 
-<title>Christmas Letter Draw</title>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🎄 Christmas Letter Draw 🎄</title>
 
 <style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
     font-family: Arial, sans-serif;
-    background: linear-gradient(
-        135deg,
-        #0d5c31,
-        #168039
-    );
-    color:white;
-    text-align:center;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,0.45),
+            rgba(0,0,0,0.45)
+        ),
+        url("background.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     min-height:100vh;
+
     display:flex;
-    flex-direction:column;
     justify-content:center;
     align-items:center;
-    margin:0;
+
+    color:white;
+}
+
+.container{
+
+    background:rgba(0,0,0,0.4);
+
+    backdrop-filter:blur(10px);
+
+    border-radius:25px;
+
+    padding:40px 30px;
+
+    width:90%;
+    max-width:500px;
+
+    text-align:center;
+
+    border:2px solid rgba(255,255,255,0.2);
+
+    box-shadow:0 0 20px rgba(255,255,255,0.2);
 }
 
 h1{
     font-size:2rem;
+    margin-bottom:20px;
 }
 
 #letter{
-    font-size:10rem;
+
+    font-size:9rem;
+
     font-weight:bold;
-    margin:30px;
+
+    color:#FFD700;
+
+    margin:20px 0;
+
+    text-shadow:
+        0 0 10px #fff,
+        0 0 20px #FFD700,
+        0 0 30px #FFD700;
 }
 
 button{
-    font-size:1.5rem;
-    padding:15px 30px;
-    margin:10px;
+
     border:none;
+
+    padding:15px 30px;
+
+    font-size:1.3rem;
+
+    margin:10px;
+
     border-radius:15px;
+
     cursor:pointer;
+
+    transition:0.3s;
 }
 
 .random{
-    background:#f4c542;
+
+    background:#FFD700;
+    color:black;
+}
+
+.random:hover{
+
+    transform:scale(1.05);
 }
 
 .lock{
-    background:#e63946;
+
+    background:#D4001A;
     color:white;
 }
 
-.locked{
-    color:#f4c542;
+.lock:hover{
+
+    transform:scale(1.05);
 }
+
+.locked{
+
+    color:#00ff66;
+
+    text-shadow:
+        0 0 10px #00ff66,
+        0 0 20px #00ff66,
+        0 0 30px #00ff66;
+}
+
+.footer{
+
+    margin-top:20px;
+    font-size:0.9rem;
+    opacity:0.8;
+}
+
 </style>
 
 </head>
+
 <body>
 
-<h1>🎄 Christmas Letter Draw 🎄</h1>
+<div class="container">
 
-<div id="letter">A</div>
+    <h1>🎄 Christmas Letter Draw 🎄</h1>
 
-<div>
+    <div id="letter">A</div>
+
     <button class="random" onclick="randomLetter()">
-        🎲 Random
+        🎲 Shuffle
     </button>
 
     <button class="lock" onclick="lockLetter()">
         🔒 Lock
     </button>
+
+    <div class="footer">
+        ❄ Merry Christmas ❄
+    </div>
+
 </div>
 
 <script>
@@ -80,14 +167,18 @@ let isLocked = false;
 
 function randomLetter(){
 
-    if(isLocked) return;
+    if(isLocked){
+        return;
+    }
 
-    let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    let random =
-        letters[Math.floor(
-            Math.random()*letters.length
-        )];
+    const random =
+        letters[
+            Math.floor(
+                Math.random()*letters.length
+            )
+        ];
 
     document.getElementById("letter").innerHTML = random;
 }
@@ -100,7 +191,7 @@ function lockLetter(){
         .classList.add("locked");
 
     alert(
-      "🎄 Merry Christmas!\nYour letter is locked."
+        "🎄 Merry Christmas!\n\nYour letter has been locked."
     );
 }
 
@@ -109,5 +200,5 @@ randomLetter();
 </script>
 
 </body>
+
 </html>
-``
