@@ -3,254 +3,344 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Character encoding -->
+    <meta charset="UTF-8">
 
-<title>🎄 Christmas Letter Draw 🎄</title>
+    <!-- Mobile friendly -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
+    <!-- Browser tab title -->
+    <title>🎄 Christmas Letter Draw 🎄</title>
 
-/* Reset */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    <style>
 
-/* Page */
-body{
+        /* =====================================
+           RESET DEFAULT BROWSER SETTINGS
+        ====================================== */
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
 
-    font-family:Arial, sans-serif;
+        /* =====================================
+           PAGE LAYOUT
+        ====================================== */
+        body{
 
-    min-height:100vh;
+            font-family:Arial, sans-serif;
 
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
+            min-height:100vh;
 
-    padding-top:42vh;
+            display:flex;
 
-    background:black;
+            justify-content:center;
 
-    color:white;
+            /* Move panel towards lower portion */
+            align-items:flex-start;
 
-    overflow:hidden;
-}
+            /* Adjust this value if needed */
+            padding-top:48vh;
 
-/* Background Image */
-.bg{
+            background:black;
 
-    position:fixed;
+            color:white;
 
-    top:0;
-    left:0;
+            overflow:hidden;
+        }
 
-    width:100%;
-    height:100%;
+        /* =====================================
+           BACKGROUND IMAGE
+        ====================================== */
+        .bg{
 
-    object-fit:contain;
+            position:fixed;
 
-    background:black;
+            top:0;
+            left:0;
 
-    z-index:-2;
-}
+            width:100%;
+            height:100%;
 
-/* Overlay */
-.overlay{
+            /* Show whole image */
+            object-fit:contain;
 
-    position:fixed;
+            background:black;
 
-    top:0;
-    left:0;
+            z-index:-2;
+        }
 
-    width:100%;
-    height:100%;
+        /* =====================================
+           DARK OVERLAY
+        ====================================== */
+        .overlay{
 
-    background:rgba(0,0,0,0.25);
+            position:fixed;
 
-    z-index:-1;
-}
+            top:0;
+            left:0;
 
-/* Panel */
-.container{
+            width:100%;
+            height:100%;
 
-    width:75%;
-    max-width:420px;
+            background:rgba(0,0,0,0.25);
 
-    padding:25px;
+            z-index:-1;
+        }
 
-    text-align:center;
+        /* =====================================
+           MAIN PANEL
+        ====================================== */
+        .container{
 
-    background:rgba(0,0,0,0.45);
+            width:65%;
 
-    backdrop-filter:blur(10px);
+            max-width:320px;
 
-    border-radius:20px;
+            min-height:340px;
 
-    border:2px solid rgba(255,255,255,0.15);
+            padding:30px 20px;
 
-    box-shadow:
-        0 0 20px rgba(255,255,255,0.20);
-}
+            text-align:center;
 
-/* Heading */
-h1{
+            background:rgba(0,0,0,0.50);
 
-    font-size:1.6rem;
+            backdrop-filter:blur(10px);
 
-    margin-bottom:10px;
-}
+            border-radius:25px;
 
-/* Letter */
-#letter{
+            border:2px solid rgba(255,255,255,0.15);
 
-    font-size:7rem;
+            box-shadow:
+                0 0 20px rgba(255,255,255,0.20);
+        }
 
-    font-weight:bold;
+        /* =====================================
+           TITLE
+        ====================================== */
+        h1{
 
-    margin:10px 0;
+            font-size:1.6rem;
 
-    color:white;
+            margin-bottom:15px;
+        }
 
-    text-shadow:
-        0 0 10px white,
-        0 0 20px white,
-        0 0 40px white;
-}
+        /* =====================================
+           LETTER DISPLAY
+        ====================================== */
+        #letter{
 
-/* Green after locked */
-.locked{
+            font-size:7rem;
 
-    color:#00ff66;
+            font-weight:bold;
 
-    text-shadow:
-        0 0 10px #00ff66,
-        0 0 20px #00ff66,
-        0 0 40px #00ff66,
-        0 0 60px #00ff66;
-}
+            margin:20px 0;
 
-/* Buttons */
-button{
+            color:white;
 
-    border:none;
+            transition:all 0.4s ease;
 
-    padding:12px 24px;
+            text-shadow:
+                0 0 10px white,
+                0 0 20px white,
+                0 0 40px white;
+        }
 
-    font-size:1rem;
+        /* =====================================
+           LOCKED LETTER STYLE
+        ====================================== */
+        #letter.locked{
 
-    margin:6px;
+            color:#00ff66 !important;
 
-    border-radius:12px;
+            text-shadow:
+                0 0 10px #00ff66,
+                0 0 20px #00ff66,
+                0 0 40px #00ff66,
+                0 0 60px #00ff66;
+        }
 
-    cursor:pointer;
+        /* =====================================
+           BUTTON STYLE
+        ====================================== */
+        button{
 
-    transition:0.3s;
-}
+            border:none;
 
-.random{
-    background:#FFD700;
-    color:black;
-}
+            padding:12px 22px;
 
-.lock{
-    background:#D4001A;
-    color:white;
-}
+            font-size:1rem;
 
-button:hover{
-    transform:scale(1.05);
-}
+            margin:6px;
 
-.footer{
+            border-radius:12px;
 
-    margin-top:15px;
+            cursor:pointer;
 
-    font-size:0.8rem;
+            transition:all 0.25s ease;
+        }
 
-    opacity:0.85;
-}
+        button:hover{
 
-</style>
+            transform:scale(1.05);
+        }
+
+        /* =====================================
+           SHUFFLE BUTTON
+        ====================================== */
+        .random{
+
+            background:#FFD700;
+
+            color:black;
+
+            font-weight:bold;
+        }
+
+        /* =====================================
+           LOCK BUTTON
+        ====================================== */
+        .lock{
+
+            background:#D4001A;
+
+            color:white;
+
+            font-weight:bold;
+        }
+
+        /* =====================================
+           DISABLED BUTTON STYLE
+        ====================================== */
+        button:disabled{
+
+            opacity:0.5;
+
+            cursor:not-allowed;
+
+            transform:none;
+        }
+
+        /* =====================================
+           FOOTER
+        ====================================== */
+        .footer{
+
+            margin-top:25px;
+
+            font-size:0.85rem;
+
+            opacity:0.85;
+        }
+
+    </style>
 
 </head>
 
 <body>
 
-<!-- Background Image -->
-<img src="background.jpg" class="bg">
+    <!-- Background image -->
+    <img src="background.jpg" class="bg" alt="Christmas Background">
 
-<!-- Dark Overlay -->
-<div class="overlay"></div>
+    <!-- Dark overlay -->
+    <div class="overlay"></div>
 
-<!-- Main Panel -->
-<div class="container">
+    <!-- Main content panel -->
+    <div class="container">
 
-    <h1>🎄 Letter Draw 🎄</h1>
+        <!-- Title -->
+        <h1>🎄 Letter Draw 🎄</h1>
 
-    <div id="letter">A</div>
+        <!-- Random letter display -->
+        <div id="letter">A</div>
 
-    <button class="random"
+        <!-- Shuffle button -->
+        <button
+            id="shuffleBtn"
+            class="random"
             onclick="randomLetter()">
-        🎲 Shuffle
-    </button>
+            🎲 Shuffle
+        </button>
 
-    <button class="lock"
+        <!-- Lock button -->
+        <button
+            id="lockBtn"
+            class="lock"
             onclick="lockLetter()">
-        🔒 Lock
-    </button>
+            🔒 Lock
+        </button>
 
-    <div class="footer">
-        ❄ Merry Christmas ❄
+        <!-- Footer -->
+        <div class="footer">
+            ❄ Merry Christmas ❄
+        </div>
+
     </div>
 
-</div>
+    <script>
 
-<script>
+        /* =====================================
+           LOCK STATUS
+        ====================================== */
+        let isLocked = false;
 
-let isLocked = false;
+        /* =====================================
+           GENERATE RANDOM LETTER
+        ====================================== */
+        function randomLetter(){
 
-/* Generate random letter */
-function randomLetter(){
+            if(isLocked){
+                return;
+            }
 
-    if(isLocked) return;
+            const letters =
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    const letters =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const randomLetter =
+                letters[
+                    Math.floor(
+                        Math.random() * letters.length
+                    )
+                ];
 
-    const random =
-        letters[
-            Math.floor(
-                Math.random()*letters.length
-            )
-        ];
+            document.getElementById("letter").textContent =
+                randomLetter;
+        }
 
-    document
-        .getElementById("letter")
-        .innerHTML = random;
-}
+        /* =====================================
+           LOCK CURRENT LETTER
+        ====================================== */
+        function lockLetter(){
 
-/* Lock selected letter */
-function lockLetter(){
+            if(isLocked){
+                return;
+            }
 
-    if(isLocked) return;
+            isLocked = true;
 
-    isLocked = true;
+            const letter =
+                document.getElementById("letter");
 
-    document
-        .getElementById("letter")
-        .classList
-        .add("locked");
+            /* Change letter to green glow */
+            letter.classList.add("locked");
 
-    alert(
-        "🎄 Merry Christmas!\n\nYour letter has been locked."
-    );
-}
+            /* Disable buttons */
+            document.getElementById("shuffleBtn").disabled = true;
+            document.getElementById("lockBtn").disabled = true;
 
-/* Initial letter */
-randomLetter();
+            /* Confirmation popup */
+            alert(
+                "🎄 Merry Christmas!\n\nYour letter has been locked!"
+            );
+        }
 
-</script>
+        /* =====================================
+           SHOW RANDOM LETTER WHEN PAGE LOADS
+        ====================================== */
+        randomLetter();
+
+    </script>
 
 </body>
+
 </html>
