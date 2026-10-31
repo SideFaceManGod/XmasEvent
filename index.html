@@ -1,185 +1,174 @@
 <!DOCTYPE html>
-<!-- Tells browser this is an HTML5 document -->
-
 <html lang="en">
-<!-- Start of HTML page, language set to English -->
 
 <head>
 
 <meta charset="UTF-8">
-<!-- Allows display of emojis and special characters -->
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Makes the page mobile-friendly -->
 
 <title>🎄 Christmas Letter Draw 🎄</title>
-<!-- Text shown on browser tab -->
 
 <style>
 
-/* Apply settings to all elements */
+/* Reset */
 *{
-    margin:0;          /* Remove default margin */
-    padding:0;         /* Remove default padding */
-    box-sizing:border-box; /* Include padding and border in width calculation */
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-/* Main page background */
+/* Page */
 body{
-    font-family: Arial, sans-serif;
 
-    /* Add dark overlay on top of background image */
-    background:
-        linear-gradient(
-            rgba(0,0,0,0.4),    /* Dark transparent layer */
-            rgba(0,0,0,0.4)
-        ),
-        url("background.jpg");  /* Background image file */
+    font-family:Arial, sans-serif;
 
-    background-size: contain; /* Fill entire screen */
-background-color: black;
-    /*background-size: cover;*/      
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat;/* Prevent repeating image */
+    min-height:100vh;
 
-    min-height:100vh; /* Full screen height */
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
 
-    display:flex;               /* Enable flexbox */
-    justify-content:center;     /* Center horizontally */
-    align-items:center;         /* Center vertically */
+    padding-top:42vh;
 
-    color:white; /* Default text color */
-}
-
-/* Main content box */
-.container{
-
-    background:rgba(0,0,0,0.4);
-    /* Semi-transparent black background */
-
-    backdrop-filter:blur(10px);
-    /* Blur effect behind the box */
-
-    border-radius:25px;
-    /* Rounded corners */
-
-    padding:40px 30px;
-    /* Space inside box */
-
-    width:70%;
-    /* Width of box */
-
-    max-width:500px;
-    /* Prevent box becoming too wide */
-
-    text-align:center;
-    /* Center all text */
-
-    border:2px solid rgba(255,255,255,0.2);
-    /* Light border */
-
-    box-shadow:0 0 20px rgba(255,255,255,0.2);
-    /* Soft glow around box */
-}
-
-/* Title text */
-h1{
-    font-size:2rem;
-    margin-bottom:20px;
-}
-
-/* Big alphabet letter */
-#letter{
-
-    font-size:9rem;      /* Very large text */
-    font-weight:bold;    /* Bold text */
-    margin:20px 0;       /* Spacing above and below */
-
-    color:white;         /* Letter color */
-
-    text-shadow:
-        0 0 10px #ffffff,
-        0 0 20px #ffffff,
-        0 0 40px #ffffff;
-    /* White glow effect */
-}
-
-/* General button design */
-button{
-
-    border:none;         /* Remove border */
-
-    padding:15px 30px;
-    /* Space inside button */
-
-    font-size:1.3rem;
-
-    margin:10px;
-
-    border-radius:15px;
-    /* Rounded corners */
-
-    cursor:pointer;
-    /* Change mouse cursor */
-
-    transition:all 0.3s ease;
-    /* Smooth hover animation */
-}
-
-/* Shuffle button */
-.random{
-
-    background:#FFD700;
-    /* Gold color */
-
-    color:black;
-    /* Black text */
-}
-
-/* Shuffle button hover effect */
-.random:hover{
-
-    transform:scale(1.05);
-    /* Slightly enlarge button */
-}
-
-/* Lock button */
-.lock{
-
-    background:#D4001A;
-    /* Red color */
+    background:black;
 
     color:white;
+
+    overflow:hidden;
 }
 
-/* Lock button hover effect */
-.lock:hover{
+/* Background Image */
+.bg{
 
-    transform:scale(1.05);
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    background:black;
+
+    z-index:-2;
 }
 
-/* Applied after Lock button is pressed */
+/* Overlay */
+.overlay{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,0.25);
+
+    z-index:-1;
+}
+
+/* Panel */
+.container{
+
+    width:75%;
+    max-width:420px;
+
+    padding:25px;
+
+    text-align:center;
+
+    background:rgba(0,0,0,0.45);
+
+    backdrop-filter:blur(10px);
+
+    border-radius:20px;
+
+    border:2px solid rgba(255,255,255,0.15);
+
+    box-shadow:
+        0 0 20px rgba(255,255,255,0.20);
+}
+
+/* Heading */
+h1{
+
+    font-size:1.6rem;
+
+    margin-bottom:10px;
+}
+
+/* Letter */
+#letter{
+
+    font-size:7rem;
+
+    font-weight:bold;
+
+    margin:10px 0;
+
+    color:white;
+
+    text-shadow:
+        0 0 10px white,
+        0 0 20px white,
+        0 0 40px white;
+}
+
+/* Green after locked */
 .locked{
 
     color:#00ff66;
-    /* Bright green */
 
     text-shadow:
         0 0 10px #00ff66,
         0 0 20px #00ff66,
-        0 0 40px #00ff66;
-    /* Green glow */
+        0 0 40px #00ff66,
+        0 0 60px #00ff66;
 }
 
-/* Footer message */
+/* Buttons */
+button{
+
+    border:none;
+
+    padding:12px 24px;
+
+    font-size:1rem;
+
+    margin:6px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.random{
+    background:#FFD700;
+    color:black;
+}
+
+.lock{
+    background:#D4001A;
+    color:white;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
 .footer{
 
-    margin-top:20px;
+    margin-top:15px;
 
-    font-size:0.9rem;
+    font-size:0.8rem;
 
-    opacity:0.8;
-    /* Slightly transparent */
+    opacity:0.85;
 }
 
 </style>
@@ -188,26 +177,29 @@ button{
 
 <body>
 
-<!-- Main panel -->
+<!-- Background Image -->
+<img src="background.jpg" class="bg">
+
+<!-- Dark Overlay -->
+<div class="overlay"></div>
+
+<!-- Main Panel -->
 <div class="container">
 
-    <!-- Page title -->
     <h1>🎄 Letter Draw 🎄</h1>
 
-    <!-- Display alphabet -->
     <div id="letter">A</div>
 
-    <!-- Shuffle button -->
-    <button class="random" onclick="randomLetter()">
+    <button class="random"
+            onclick="randomLetter()">
         🎲 Shuffle
     </button>
 
-    <!-- Lock button -->
-    <button class="lock" onclick="lockLetter()">
+    <button class="lock"
+            onclick="lockLetter()">
         🔒 Lock
     </button>
 
-    <!-- Small footer text -->
     <div class="footer">
         ❄ Merry Christmas ❄
     </div>
@@ -216,21 +208,16 @@ button{
 
 <script>
 
-/* Tracks whether the letter is locked */
 let isLocked = false;
 
 /* Generate random letter */
 function randomLetter(){
 
-    /* Stop if already locked */
-    if(isLocked){
-        return;
-    }
+    if(isLocked) return;
 
-    /* Available letters */
-    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const letters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    /* Pick random character */
     const random =
         letters[
             Math.floor(
@@ -238,31 +225,32 @@ function randomLetter(){
             )
         ];
 
-    /* Display selected letter */
-    document.getElementById("letter").innerHTML = random;
+    document
+        .getElementById("letter")
+        .innerHTML = random;
 }
 
-/* Lock current letter */
+/* Lock selected letter */
 function lockLetter(){
 
-    /* Mark as locked */
+    if(isLocked) return;
+
     isLocked = true;
 
-    /* Add green locked style */
-    document.getElementById("letter")
-        .classList.add("locked");
+    document
+        .getElementById("letter")
+        .classList
+        .add("locked");
 
-    /* Show confirmation message */
     alert(
         "🎄 Merry Christmas!\n\nYour letter has been locked."
     );
 }
 
-/* Generate one random letter when page loads */
+/* Initial letter */
 randomLetter();
 
 </script>
 
 </body>
-
 </html>
